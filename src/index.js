@@ -35,9 +35,10 @@ app.get("/api/tile/:zoom/:x/:y.png", async (req, res) => {
         /* Renders the instance at the position */
         await renderMapToPNG(mapInstance, position);
 
-        return res.sendFile(filename);
+        return res.sendFile(position);
     } catch (error) {
-        return res.status(500).send(`Error: ${error.toString()}`);
+        console.error(error);
+        return res.status(500).send(`${error.toString()}`);
     }
 });
 
