@@ -38,7 +38,7 @@ function getTilePosition(z, x, y, extension = "png") {
     };
 }
 
-const MAP_STYLE_XML = path.resolve("..", "mapnik.xml");
+const MAP_STYLE_XML = path.resolve("data", "carto", "mapnik.xml");
 
 /**
  * Gets a map instance bounded to the OSM coordinates 
@@ -65,7 +65,7 @@ async function getMapInstance(z = 12, x = 2135, y = 1472) {
  * @param {mapnik.Map} map Mapnik map instance without style
  */
 function applyStyle(style, map) {
-    map.loadSync(style, { logw: false });
+    map.loadSync(style, { log: false });
     return map;
 }
 

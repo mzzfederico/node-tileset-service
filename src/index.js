@@ -22,10 +22,10 @@ app.get("/api/tile/:zoom/:x/:y.png", async (req, res) => {
 
     try {
         const { filename, directory } = getTilePosition(zoom, x, y);
-        const position = path.resolve(`./tmp/`, directory, filename);
+        const position = path.resolve("data", "tmp", directory, filename);
 
         /* Creates the directory for the tiles at that latitude if it does not exist */
-        mkdirp.sync(`./tmp/${directory}`);
+        mkdirp.sync(path.resolve("data", "tmp", directory));
 
         /* Check cache */
         if (fs.existsSync(position)) return res.sendFile(position);
@@ -42,7 +42,7 @@ app.get("/api/tile/:zoom/:x/:y.png", async (req, res) => {
 });
 
 app.use("/test", (req, res) => {
-    res.sendFile(path.resolve("test.html"));
+    res.sendFile(path.resolve("src", "test.html"));
 });
 
 app.listen(3000, () => {
